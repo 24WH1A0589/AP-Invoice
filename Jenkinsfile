@@ -5,33 +5,28 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'Checking out source code'
                 checkout scm
             }
         }
 
         stage('Build') {
             steps {
-                echo 'Building the project'
+                echo 'Building the application'
                 sh 'ls -la'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Testing the project'
-                sh 'echo Tests passed successfully'
+                echo 'Testing the application'
+                sh 'echo Tests passed'
             }
         }
-    }
 
-    post {
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-
-        failure {
-            echo 'Pipeline failed!'
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the application'
+            }
         }
     }
 }
